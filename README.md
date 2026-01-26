@@ -1,69 +1,92 @@
-# Translator
+# 🌐 JSON Auto-Translator (i18n Tool)
 
-Breve: script para extraer datos de archivos JS (`cv_data.js`, `projects-opti.js`) y generar versiones traducidas (es → en).
+> **Una herramienta de escritorio rápida y sencilla para automatizar la traducción de archivos de localización JSON.**
 
-Uso:
+**JSON Auto-Translator** es una aplicación GUI ligera escrita en Python diseñada para desarrolladores web y de videojuegos. Te permite cargar un archivo de idioma (ej. `en.json`), elegir un idioma de destino y generar automáticamente un nuevo archivo traducido (ej. `es.json`) utilizando la API de Google Translate, manteniendo intacta la estructura de las claves.
 
-# Translator — `translator.py`
+## ✨ Características Principales
 
-Descripción
+- **🔒 Traducción Segura (Solo Valores):** La herramienta es inteligente; traduce únicamente los _valores_ del JSON y mantiene las _claves_ originales para que tu código no se rompa.
+- **⚡ Procesamiento Multihilo:** La interfaz gráfica (GUI) no se congela mientras se traducen archivos grandes, gracias a su arquitectura multihilo.
+- **📊 Barra de Progreso en Tiempo Real:** Visualiza exactamente el avance de la traducción, ítem por ítem.
+- **🤖 API Gratuita:** Utiliza la librería `googletrans` (API de Google Translate) sin necesidad de configuraciones de pago.
+- **🖥️ Interfaz Intuitiva:** Interfaz gráfica nativa construida con Tkinter, lista para usar sin usar la terminal.
 
-- Extrae estructuras de datos (objetos y arrays literales) de ficheros JavaScript y genera versiones traducidas de los valores de texto.
+---
 
-Características
+## ⚙️ Requisitos e Instalación
 
-- Parseo heurístico de objetos/arrays JS (limpieza de comentarios, comillas y comas finales) para convertirlos a JSON.
-- Traducción automática de cadenas desde español (`es`) a inglés (`en`) mediante `googletrans`.
-- Omite campos no textuales o rutas mediante la constante `KEYS_TO_SKIP`.
-- Pausa automática entre peticiones (1s) para reducir la probabilidad de bloqueos.
+**Requisitos del sistema:**
 
-Requisitos
+- Python 3.8 o superior.
 
-- Python 3.8+
-- `googletrans==4.0.0-rc1` (el script intentará instalarlo si no está presente).
-
-Uso
-
-- Ejecutar desde la raíz del proyecto:
+### 1. Clonar o descargar el repositorio
 
 ```bash
-python dev/scripts/translator/translator.py
+git clone [https://github.com/tu-usuario/json-auto-translator.git](https://github.com/tu-usuario/json-auto-translator.git)
+cd json-auto-translator
 ```
 
-Archivos objetivo
+2. Instalar dependencias
 
-- Por defecto `FILES_TO_TRANSLATE` contiene `cv_data.js` y `projects-opti.js`. Puedes editar esa lista al inicio del script para añadir o quitar archivos.
+Es muy importante instalar la versión candidata (rc1) de googletrans, ya que las versiones estables anteriores presentan errores de conexión con la API actual de Google.
+Bash
 
-Salida
+pip install googletrans==4.0.0-rc1
 
-- Crea nuevos archivos en la misma carpeta `js/` con sufijo `-en` (por ejemplo `cv_data-en.js`). Mantiene el nombre de la variable JS original.
+(Opcional: puedes usar pip install -r requirements.txt si tienes el archivo generado).
+📖 Guía de Uso
 
-Limitaciones y recomendaciones
+    Ejecutar la herramienta:
+    Bash
 
-- No es un parser JS completo: funciona con literals de objetos y arrays. Si el archivo contiene funciones, plantillas o construcciones complejas el parseo puede fallar.
-- Revisa y ajusta `KEYS_TO_SKIP` para evitar traducir rutas, identificadores o fragmentos que no deban traducirse.
-- Si vas a traducir muchos textos considera revisar el tiempo entre peticiones o usar una API con clave según necesidad.
+    python translator.py
 
-Nota sobre backends
+    Cargar JSON: Haz clic en "Browse" y selecciona tu archivo fuente (por ejemplo, en.json).
 
-- El script intenta usar `googletrans` por defecto. Si la importación o instalación de `googletrans` falla, el script ahora intenta usar `deep-translator` como fallback (se instalará automáticamente si es posible). Si ambos fallan, el script informará y saldrá.
+    Seleccionar Idioma: Escribe el código del idioma de destino en el campo de texto (ejemplo: es para español, fr para francés, de para alemán).
 
-Evolución (resumen)
+    Traducir: Haz clic en "Translate". Se abrirá una ventana para que elijas dónde guardar el nuevo archivo (ej. es.json).
 
-- Implementación inicial: extracción y conversión de objetos JS a JSON.
-- Añadida lista `KEYS_TO_SKIP` para evitar traducir rutas/identificadores.
-- Integración con `googletrans` y autoinstalador de dependencias.
-- Mejora en heurísticas para omitir strings que parecen código y en manejo de errores y logging.
+    ¡Listo! La barra de progreso te indicará cuando el proceso haya finalizado exitosamente.
 
-Nota sobre parseo JS
+💡 Estructura de Ejemplo
 
-- Los archivos de entrada son JavaScript, no JSON estricto. Cuando el parseo heurístico en Python no pueda extraer el objeto, el script intentará llamar a un helper Node.js (`js_to_json.js`) que usa `acorn` para parsear el archivo y extraer objetos/arrays top-level.
+Archivo de Entrada (en.json):
+JSON
 
-Requisitos para usar el helper Node.js:
+{
+"title": "Welcome to the game",
+"start_btn": "Start Game",
+"options": "Settings"
+}
 
-```bash
-cd dev/scripts/translator
-npm install acorn
+Archivo de Salida (es.json):
+JSON
+
+{
+"title": "Bienvenido al juego",
+"start_btn": "Empezar juego",
+"options": "Ajustes"
+}
+
+⚖️ Licencia y Créditos
+
+Este proyecto utiliza las siguientes tecnologías de código abierto:
+
+    Python (tkinter, threading, json): Librerías estándar.
+
+    Googletrans: Librería no oficial de Python para la API de Google Translate.
+
+Desarrollado para agilizar flujos de trabajo de localización (i18n).
+
+### 📝 Notas adicionales para ti:
+
+1. Asegúrate de tomar una captura de pantalla de la ventana de tu programa funcionando y guardarla en la carpeta principal con el nombre `screenshot.png` para que aparezca en el README.
+2. Si subes esto a GitHub, recuerda cambiar la URL `https://github.com/tu-usuario/json-auto-translator.git` por tu URL real.
+
+¿Te gustaría que te ayude con algo más de este repositorio antes de que hagas el commit?
+
 ```
 
-Si no quieres usar Node, el parseo seguirá intentando con heurísticas en Python, pero puede fallar en archivos JS más complejos.
+```
