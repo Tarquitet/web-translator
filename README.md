@@ -25,7 +25,7 @@
 ### 1. Clonar o descargar el repositorio
 
 ```bash
-git clone [https://github.com/tu-usuario/json-auto-translator.git](https://github.com/tu-usuario/translator.git)
+git clone [https://github.com/tu-usuario/json-auto-translator.git](https://github.com/Tarquitet/web-translator.git)
 cd translator
 ```
 
