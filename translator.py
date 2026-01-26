@@ -70,7 +70,7 @@ IGNORE_VALUES = [
     'Verdad & Fe', 'Tarquitet', 'Builtechraft', 'Rappi', 'Spotify', 
     'Wix', 'Unity', 'Figma', 'YouTube', 'Behance', 'Github', 
     'GymApp', 'Sudoku', 'Algebrain', 'Wumpus', 'OpenGL', 
-    'Sonorus', 'Pixelation', 'David Josué'
+    'Sonorus', 'Pixelation', 'David Josué','Miro','TARQUITET'
 ]
 
 # ==========================================
