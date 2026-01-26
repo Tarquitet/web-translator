@@ -51,7 +51,8 @@ KEYS_TO_TRANSLATE = [
     'Motion',
     'Dev',
     'Digital',
-    'App'
+    'App',
+    'desc'
 ]
 
 # Keys for labels in cv_data.js that should be translated
