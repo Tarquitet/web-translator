@@ -1,0 +1,29 @@
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtualenvs
+venv/
+.venv/
+env/
+.env
+
+# Packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Logs
+*.log
+
+# Editor/IDE
+.vscode/
+
+# Node helpers
+node_modules/
+package-lock.json
+npm-debug.log
+
+# OS
+.DS_Store
