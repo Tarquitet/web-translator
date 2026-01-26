@@ -4,6 +4,8 @@
 
 **JSON Auto-Translator** es una aplicación por terminal ligera escrita en Python diseñada para ayudarme a traducir rápidamente algunos archivos .js o .json durante el desarrollo de mi portafolio personal (puedes visitarlo en mi perfil). Te permite colocar los archivos desde las listas dentro del programa, para después ejecutarlo.
 
+![1769442012384](images/README/1769442012384.png)
+
 ## ✨ Características Principales
 
 - **🔒 Traducción Segura (Solo Valores):** La herramienta es inteligente; traduce únicamente los _valores_ del JSON y mantiene las _claves_ originales para que tu código no se rompa.
