@@ -79,14 +79,3 @@ Este proyecto utiliza las siguientes tecnologías de código abierto:
     Googletrans: Librería no oficial de Python para la API de Google Translate.
 
 Desarrollado para agilizar flujos de trabajo de localización (i18n).
-
-### 📝 Notas adicionales para ti:
-
-1. Asegúrate de tomar una captura de pantalla de la ventana de tu programa funcionando y guardarla en la carpeta principal con el nombre `screenshot.png` para que aparezca en el README.
-2. Si subes esto a GitHub, recuerda cambiar la URL `https://github.com/tu-usuario/json-auto-translator.git` por tu URL real.
-
-¿Te gustaría que te ayude con algo más de este repositorio antes de que hagas el commit?
-
-```
-
-```
