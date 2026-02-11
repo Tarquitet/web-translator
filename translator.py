@@ -52,7 +52,7 @@ KEYS_TO_TRANSLATE = [
     'Dev',
     'Digital',
     'App',
-    'desc'
+    'degree'
 ]
 
 # Keys for labels in cv_data.js that should be translated
