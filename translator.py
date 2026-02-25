@@ -58,7 +58,7 @@ KEYS_TO_TRANSLATE = [
 # Keys for labels in cv_data.js that should be translated
 LABEL_KEYS = [
     'contact', 'languages', 'softSkills', 'techSkills', 'profile', 'education', 'projects', 'stack',
-    'footerDownload', 'footerTheme', 'footerContact', 'btnWeb'
+    'footerDownload', 'footerTheme', 'footerContact', 'btnWeb', 'rights', 'shutdown', 'skillsTitle', 'software', 'letsTalk', 'confidential', 'hire', 'level'
 ]
 
 for k in LABEL_KEYS:
@@ -71,7 +71,7 @@ IGNORE_VALUES = [
     'Verdad & Fe', 'Tarquitet', 'Builtechraft', 'Rappi', 'Spotify', 
     'Wix', 'Unity', 'Figma', 'YouTube', 'Behance', 'Github', 
     'GymApp', 'Sudoku', 'Algebrain', 'Wumpus', 'OpenGL', 
-    'Sonorus', 'Pixelation', 'David Josué','Miro','TARQUITET'
+    'Sonorus', 'Pixelation', 'David Josué','Miro','TARQUITET','Chat GPT'
 ]
 
 # ==========================================
@@ -132,7 +132,7 @@ def process_file_regex(content, translator):
     # 3. Una comilla (simple, doble o backtick)
     # 4. El contenido dentro (capturando escapados)
     # 5. La comilla de cierre
-    pattern = re.compile(r"(?P<key>\b\w+)\s*:\s*(?P<quote>['\"`])(?P<text>(?:(?!(?P=quote)|\\).|\\.)*)(?P=quote)")
+    pattern = re.compile(r"(?P<key>\b\w+)\s*:\s*(?P<quote>['\"`])(?P<text>(?:(?!(?P=quote)|\\).|\\.)*)(?P=quote)", re.DOTALL)
 
     def replacement_function(match):
         key = match.group('key')
