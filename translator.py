@@ -10,8 +10,8 @@ import importlib
 # ==========================================
 def install_dependencies():
     required = [
-        ("deep_translator", "deep-translator"),
-        ("googletrans", "googletrans==4.0.0-rc1")
+        ("deep_translator", "deep-translator")
+        # Eliminamos googletrans de aquí
     ]
     for import_name, install_name in required:
         try:
@@ -58,7 +58,7 @@ KEYS_TO_TRANSLATE = [
 # Keys for labels in cv_data.js that should be translated
 LABEL_KEYS = [
     'contact', 'languages', 'softSkills', 'techSkills', 'profile', 'education', 'projects', 'stack',
-    'footerDownload', 'footerTheme', 'footerContact', 'btnWeb'
+    'footerDownload', 'footerTheme', 'footerContact', 'btnWeb', 'rights', 'shutdown', 'skillsTitle', 'software', 'letsTalk', 'confidential', 'hire', 'level'
 ]
 
 for k in LABEL_KEYS:
@@ -71,7 +71,7 @@ IGNORE_VALUES = [
     'Verdad & Fe', 'Tarquitet', 'Builtechraft', 'Rappi', 'Spotify', 
     'Wix', 'Unity', 'Figma', 'YouTube', 'Behance', 'Github', 
     'GymApp', 'Sudoku', 'Algebrain', 'Wumpus', 'OpenGL', 
-    'Sonorus', 'Pixelation', 'David Josué','Miro','TARQUITET'
+    'Sonorus', 'Pixelation', 'David Josué','Miro','TARQUITET','Chat GPT'
 ]
 
 # ==========================================
@@ -82,11 +82,8 @@ class TranslatorService:
         self.services = []
         try:
             self.services.append(('deep', GoogleTranslator(source='es', target='en')))
-        except: pass
-        try:
-            from googletrans import Translator
-            self.services.append(('google', Translator()))
-        except: pass
+        except: 
+            print("[!] Error al inicializar deep_translator")
             
     def translate(self, text):
         if not text or len(text) < 2: return text
@@ -97,7 +94,6 @@ class TranslatorService:
         for name, service in self.services:
             try:
                 if name == 'deep': return service.translate(text)
-                elif name == 'google': return service.translate(text, src='es', dest='en').text
             except:
                 time.sleep(0.5)
                 continue
@@ -132,7 +128,7 @@ def process_file_regex(content, translator):
     # 3. Una comilla (simple, doble o backtick)
     # 4. El contenido dentro (capturando escapados)
     # 5. La comilla de cierre
-    pattern = re.compile(r"(?P<key>\b\w+)\s*:\s*(?P<quote>['\"`])(?P<text>(?:(?!(?P=quote)|\\).|\\.)*)(?P=quote)")
+    pattern = re.compile(r"(?P<key>\b\w+)\s*:\s*(?P<quote>['\"`])(?P<text>(?:(?!(?P=quote)|\\).|\\.)*)(?P=quote)", re.DOTALL)
 
     def replacement_function(match):
         key = match.group('key')
